@@ -3,7 +3,7 @@ let lista = document.getElementById('lista-amigos');
 function adicionar() {
     let nome = document.getElementById('nome-amigo').value;
     lista = document.getElementById('lista-amigos');
-    if (nome == ''){
+    if (nome == '' || lista.textContent.includes(nome)){
         return;
     }
     if (lista.textContent != ''){
@@ -15,6 +15,10 @@ function adicionar() {
 
 function sortear() {
     let nomes = lista.textContent.split(', ');
+    if (nomes.length < 4){
+        alert('Mínimo 4 pessoas para o sorteio!')
+        return;
+    }
     nomes.sort(() => Math.random() - 0.5);
     let listaSorteio = document.getElementById('lista-sorteio');
     listaSorteio.innerHTML = '';
